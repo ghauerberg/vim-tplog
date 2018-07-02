@@ -38,9 +38,25 @@ function! g:CollapsAllPBR()
   
 endfunction
 
+" decode hex under cursor
+function! g:DecodeHexBlock()
+  execute "normal! $bi\<cr>\<esc>"
+  let s:line = getline('.')
+  let s:decodeText = system('echo '.s:line. ' | xxd -r -p')
+  execute "normal! S". s:decodeText ."\<esc>0"
+endfunction
+
+function! g:DecodeBase64Block()
+  let s:line = getline('.')
+  let s:decodeText = system('echo '.s:line. ' | base64 -D')
+  execute "normal! S". s:decodeText ."\<esc>0"
+endfunction
+
 command! SelectPBR call s:selectPBR()
 command! SelectFullPBR call s:selectLinesPBR()
 command! FindAndCollapsPBR call s:findAndCollapsPBR()
 command! CollapsALLPBR call g:CollapsAllPBR()
+command! DecodeHEX call g:DecodeHexBlock()
+command! DecodeBase64 call g:DecodeBase64Block()
 
 nnoremap <leader>l :FindAndCollapsPBR<cr>
