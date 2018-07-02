@@ -20,7 +20,7 @@ function! s:findAndCollapsPBR()
   execute "normal! zf"
 endfunction
 
-function! s:collapsAllPBR() 
+function! g:CollapsAllPBR() 
   " Save the cursor position
   let l:saved_pos = getpos(".")
 
@@ -41,6 +41,6 @@ endfunction
 command! SelectPBR call s:selectPBR()
 command! SelectFullPBR call s:selectLinesPBR()
 command! FindAndCollapsPBR call s:findAndCollapsPBR()
-command! CollapsALLPBR call s:collapsAllPBR()
+command! CollapsALLPBR call g:CollapsAllPBR()
 
 nnoremap <leader>l :FindAndCollapsPBR<cr>
