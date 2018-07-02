@@ -1,4 +1,4 @@
-if exists("b:currect_syntax)
+if exists("b:currect_syntax")
   finish
 endif
 
